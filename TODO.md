@@ -7,7 +7,7 @@ v1 stt boltalka
     * [] front with image of current voise
 
   * [] devops
-    * [] auto deploy
+    * [] autodir deploy
     * [] deploy to subdomen of topor.tech
 
 
