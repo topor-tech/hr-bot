@@ -22,6 +22,11 @@ class Settings(BaseSettings):
         default="topor-tech-llm-hr-dev",
         description="S3 bucket name for file storage"
     )
+
+    OPENAI_API_KEY: str = Field(
+        default="",
+        description="OpenAI API key for agent access"
+    )
     
     class Config:
         env_file = ".env"

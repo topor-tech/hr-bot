@@ -3,7 +3,7 @@ Backend for compare and search condidates for vacancies.
 functionallity
 
   *[] Add condidate CV
-    *[] save file to db/s3
+    *[x] save file to db/s3
     *[] make Cv extract
 
   *[] Add vacancy description
