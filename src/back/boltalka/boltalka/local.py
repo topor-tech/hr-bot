@@ -23,14 +23,6 @@ load_dotenv()
 set_default_openai_key(os.getenv("OPENAI_API_KEY") or "")
 
 
-@function_tool
-def get_weather(city: str) -> str:
-    """Get the weather for a given city."""
-    print(f"[debug] get_weather called with city: {city}")
-    choices = ["sunny", "cloudy", "rainy", "snowy"]
-    return f"The weather in {city} is {random.choice(choices)}."
-
-
 russian_agent = Agent(
     name="Russian",
     handoff_description="A russian speaking agent.",
