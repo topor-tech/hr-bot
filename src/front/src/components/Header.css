@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: white;
+}
+
 .logo {
   font-size: 2rem;
   font-weight: bold;

@@ -1,0 +1,15 @@
+.vacancies-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.vacancies-page h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.vacancies-page p {
+  color: #666;
+  font-size: 1.1rem;
+}
