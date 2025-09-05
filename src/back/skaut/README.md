@@ -4,7 +4,9 @@ functionallity
 
   *[] Add condidate CV
     *[x] save file to db/s3
-    *[] make Cv extract
+    *[] convert file with gotenberg to pdf
+    *[X] make CV extract to text
+    *[] make CV extract to index
 
   *[] Add vacancy description
     *[] save file to db/s3

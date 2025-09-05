@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from skaut.api.files.upload import router as files_router
-from skaut.api.preprocess.extract_cv import router as preprocess_router
+from skaut.api import router as api_router
     
 app = FastAPI(title="Skaut API", version="1.0.0")
 
@@ -23,8 +22,7 @@ async def health_check():
     return {"status": "healthy"}
 
 # Routers
-app.include_router(files_router)
-app.include_router(preprocess_router)
+app.include_router(api_router)
 
 
 if __name__ == "__main__":

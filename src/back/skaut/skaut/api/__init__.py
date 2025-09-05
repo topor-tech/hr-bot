@@ -1,0 +1,9 @@
+from fastapi import APIRouter
+
+from skaut.api.preprocess import router as preprocess_router
+from skaut.api.files import router as files_router
+
+
+router = APIRouter(prefix="", tags=["api"])
+router.include_router(preprocess_router)
+router.include_router(files_router)

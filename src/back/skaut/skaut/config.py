@@ -28,6 +28,11 @@ class Settings(BaseSettings):
         description="OpenAI API key for agent access"
     )
     
+    GOTENBERG_URL: str = Field(
+        default="http://localhost:3000",
+        description="Gotenberg service URL for document conversion"
+    )
+    
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
