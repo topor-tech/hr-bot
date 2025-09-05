@@ -33,6 +33,12 @@ class Settings(BaseSettings):
         description="Gotenberg service URL for document conversion"
     )
     
+    # Database Configuration
+    DATABASE_URL: str = Field(
+        default="postgresql://hr_db:hr_db@localhost:5432/hr_db",
+        description="Database connection URL"
+    )
+    
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

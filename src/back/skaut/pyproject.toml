@@ -23,6 +23,11 @@ dependencies = [
     "boto3>=1.34.0",
     "aioboto3>=13.0.0",
     "aiohttp>=3.9.0",
+    "sqlalchemy>=2.0.43",
+    "alembic>=1.16.5",
+    "asyncpg>=0.29.0",
+    "psycopg2-binary>=2.9.9",
+    "psycopg2>=2.9.10",
 ]
 
 [project.optional-dependencies]
@@ -63,3 +68,11 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
+
+[tool.alembic]
+# Alembic configuration for database migrations
+script_location = "alembic"
+prepend_sys_path = "."
+version_num_format = "%%04d"
+version_path_separator = "os"
+sqlalchemy.url = "postgresql+asyncpg://hr_db:hr_db@localhost:5432/hr_db"

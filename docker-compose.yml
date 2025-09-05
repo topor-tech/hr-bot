@@ -6,3 +6,13 @@ services:
     environment:
       - GOTENBERG_LOG_LEVEL=info
     restart: unless-stopped
+
+  hr-db:
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=hr_db
+      - POSTGRES_PASSWORD=hr_db
+      - POSTGRES_DB=hr_db
+    restart: unless-stopped
