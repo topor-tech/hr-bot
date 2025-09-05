@@ -1,0 +1,124 @@
+.drag-drop-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.drag-drop-area {
+  border: 2px dashed #525252;
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #262626;
+  position: relative;
+  overflow: hidden;
+}
+
+.drag-drop-area::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.drag-drop-area:hover::before {
+  left: 100%;
+}
+
+.drag-drop-area:hover {
+  border-color: #6b7280;
+  background-color: #1f1f1f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.drag-drop-area.drag-over {
+  border-color: #9ca3af;
+  background-color: #1a1a1a;
+  transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.drag-drop-area.drag-over::before {
+  left: 100%;
+}
+
+.drag-drop-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.upload-icon {
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+
+.drag-drop-area:hover .upload-icon {
+  color: #d1d5db;
+  transform: scale(1.1);
+}
+
+.drag-drop-area.drag-over .upload-icon {
+  color: #f3f4f6;
+  transform: scale(1.15);
+}
+
+.drag-drop-text {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.drag-drop-area:hover .drag-drop-text {
+  color: #d1d5db;
+}
+
+.drag-drop-area.drag-over .drag-drop-text {
+  color: #f3f4f6;
+}
+
+.file-info {
+  margin: 0;
+  color: #60a5fa;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background-color: rgba(96, 165, 250, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  transition: all 0.3s ease;
+}
+
+.drag-drop-area:hover .file-info {
+  background-color: rgba(96, 165, 250, 0.15);
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .drag-drop-area {
+    border-color: #404040;
+    background-color: #1a1a1a;
+  }
+  
+  .drag-drop-area:hover {
+    border-color: #525252;
+    background-color: #0f0f0f;
+  }
+  
+  .drag-drop-area.drag-over {
+    border-color: #6b7280;
+    background-color: #0a0a0a;
+  }
+}
