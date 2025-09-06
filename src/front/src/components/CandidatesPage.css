@@ -518,3 +518,128 @@
 .preview-btn:hover svg {
   fill: #60a5fa;
 }
+
+/* New sections styles */
+.detail-section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(96, 165, 250, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(96, 165, 250, 0.1);
+}
+
+.detail-section h5 {
+  color: #f3f4f6;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+/* Contact Information Styles */
+.email-link {
+  color: #60a5fa;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.email-link:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.telegram-link {
+  color: #22c55e;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.telegram-link:hover {
+  color: #4ade80;
+  text-decoration: underline;
+}
+
+/* Tags Styles */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  background: rgba(96, 165, 250, 0.2);
+  color: #f3f4f6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background: rgba(96, 165, 250, 0.3);
+  border-color: rgba(96, 165, 250, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Extracted Text Styles */
+.extracted-text {
+  background: #1f1f1f;
+  border: 1px solid #404040;
+  border-radius: 6px;
+  padding: 1rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.extracted-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.extracted-text::-webkit-scrollbar-track {
+  background: #262626;
+  border-radius: 3px;
+}
+
+.extracted-text::-webkit-scrollbar-thumb {
+  background: #60a5fa;
+  border-radius: 3px;
+}
+
+.extracted-text::-webkit-scrollbar-thumb:hover {
+  background: #93c5fd;
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 768px) {
+  .detail-section {
+    margin-top: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .tags-container {
+    gap: 0.25rem;
+  }
+  
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  .extracted-text {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+    max-height: 200px;
+  }
+}

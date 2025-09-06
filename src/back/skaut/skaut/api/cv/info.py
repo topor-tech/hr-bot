@@ -29,6 +29,11 @@ class CVResponse(BaseModel):
     pdf_file_original_filename: str | None
     pdf_file_s3_key: str | None
     pdf_file_extension: str | None
+    extracted_text: str | None
+    phone_number: str | None
+    email: str | None
+    telegram: str | None
+    tags: list[str] | None
 
 
 @router.get("/api/cv/info/{cv_id}", response_model=CVResponse)
@@ -57,6 +62,11 @@ async def get_cv_by_id(
             CV.uploaded_at,
             CV.file_id,
             CV.pdf_file_id,
+            CV.extracted_text,
+            CV.phone_number,
+            CV.email,
+            CV.telegram,
+            CV.tags,
             File.original_filename,
             File.extension,
             File.s3_key,
@@ -89,4 +99,9 @@ async def get_cv_by_id(
         pdf_file_original_filename=cv.pdf_original_filename,  # type: ignore
         pdf_file_s3_key=str(cv.pdf_s3_key),  # type: ignore
         pdf_file_extension=cv.pdf_extension,  # type: ignore
+        extracted_text=cv.extracted_text,  # type: ignore
+        phone_number=cv.phone_number,  # type: ignore
+        email=cv.email,  # type: ignore
+        telegram=cv.telegram,  # type: ignore
+        tags=cv.tags,  # type: ignore
     )

@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from sqlalchemy import Column, DateTime, Integer, ForeignKey, Text, String
+from sqlalchemy import Column, DateTime, Integer, ForeignKey, Text, String, ARRAY
 from sqlalchemy.sql import func
 
 from .base import Base
@@ -19,3 +19,7 @@ class CV(Base):
     file_id = Column(Integer, ForeignKey("file.id"), nullable=False)
     pdf_file_id = Column(Integer, ForeignKey("file.id"), nullable=True)
     extracted_text = Column(Text, nullable=True)
+    phone_number = Column(String(20), nullable=True)
+    email = Column(String(255), nullable=True)
+    telegram = Column(String(30), nullable=True)
+    tags = Column(ARRAY(String), nullable=True, index=True)

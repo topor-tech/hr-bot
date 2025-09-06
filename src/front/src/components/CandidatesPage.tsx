@@ -14,6 +14,11 @@ interface CV {
   pdf_file_original_filename: string | null
   pdf_file_s3_key: string | null
   pdf_file_extension: string | null
+  extracted_text: string | null
+  phone_number: string | null
+  email: string | null
+  telegram: string | null
+  tags: string[] | null
 }
 
 function CandidatesPage() {
@@ -321,6 +326,58 @@ function CandidatesPage() {
                         </span>
                       )}
                     </div>
+                    
+                    {/* Contact Information */}
+                    {(selectedCvInfo.phone_number || selectedCvInfo.email || selectedCvInfo.telegram) && (
+                      <div className="detail-section">
+                        <h5>Contact Information</h5>
+                        {selectedCvInfo.phone_number && (
+                          <div className="detail-item">
+                            <strong>Phone:</strong> {selectedCvInfo.phone_number}
+                          </div>
+                        )}
+                        {selectedCvInfo.email && (
+                          <div className="detail-item">
+                            <strong>Email:</strong> 
+                            <a href={`mailto:${selectedCvInfo.email}`} className="email-link">
+                              {selectedCvInfo.email}
+                            </a>
+                          </div>
+                        )}
+                        {selectedCvInfo.telegram && (
+                          <div className="detail-item">
+                            <strong>Telegram:</strong> 
+                            <a href={`https://t.me/${selectedCvInfo.telegram}`} target="_blank" rel="noopener noreferrer" className="telegram-link">
+                              @{selectedCvInfo.telegram}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    
+                    {/* Tags */}
+                    {selectedCvInfo.tags && selectedCvInfo.tags.length > 0 && (
+                      <div className="detail-section">
+                        <h5>Tags</h5>
+                        <div className="tags-container">
+                          {selectedCvInfo.tags.map((tag, index) => (
+                            <span key={index} className="tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Extracted Text */}
+                    {selectedCvInfo.extracted_text && (
+                      <div className="detail-section">
+                        <h5>Extracted Text</h5>
+                        <div className="extracted-text">
+                          {selectedCvInfo.extracted_text}
+                        </div>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="preview-placeholder">
