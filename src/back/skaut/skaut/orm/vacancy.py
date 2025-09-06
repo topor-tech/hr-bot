@@ -3,7 +3,7 @@
 from datetime import datetime
 from typing import Optional
 
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text, ARRAY
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
@@ -21,3 +21,4 @@ class Vacancy(Base):
     file_id = Column(Integer, ForeignKey("file.id"), nullable=True)
     pdf_file_id = Column(Integer, ForeignKey("file.id"), nullable=True)
     extracted_text = Column(Text, nullable=True)
+    tags = Column(ARRAY(String), nullable=True, index=True)

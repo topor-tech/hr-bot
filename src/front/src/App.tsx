@@ -42,6 +42,23 @@ function App() {
     return await response.json()
   }
 
+  const uploadVacancy = async (file: File, name: string) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('name', name)
+
+    const response = await fetch('http://localhost:8000/api/jobs/add', {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to upload vacancy: ${response.statusText}`)
+    }
+
+    return await response.json()
+  }
+
   const handleModalSubmit = async () => {
     if (modalType === 'cv' && selectedFile) {
       setIsUploading(true)
@@ -60,14 +77,23 @@ function App() {
       } finally {
         setIsUploading(false)
       }
-    } else {
-      console.log(`Adding ${modalType}: ${nameInput}`)
-      // For vacancy, just close modal for now
-      setShowModal(false)
-      setModalType(null)
-      setNameInput('')
-      setFileName('')
-      setSelectedFile(null)
+    } else if (modalType === 'vacancy' && selectedFile) {
+      setIsUploading(true)
+      try {
+        const result = await uploadVacancy(selectedFile, nameInput)
+        console.log('Vacancy uploaded successfully:', result)
+        // Reset form
+        setShowModal(false)
+        setModalType(null)
+        setNameInput('')
+        setFileName('')
+        setSelectedFile(null)
+      } catch (error) {
+        console.error('Error uploading vacancy:', error)
+        alert('Failed to upload vacancy. Please try again.')
+      } finally {
+        setIsUploading(false)
+      }
     }
   }
 

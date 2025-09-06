@@ -90,6 +90,22 @@ class GPTPrompts:
         "- Return only valid JSON without any additional text"
     )
     
+    # Job Extraction
+    JOB_EXTRACTION = (
+        "Extract job tags and requirements from the vacancy text. Return a JSON object with the following structure:\n"
+        "{\n"
+        '  "skills": ["skill1", "skill2", "skill3"]\n'
+        "}\n\n"
+        "Rules:\n"
+        "- Extract technical skills, programming languages, frameworks, tools\n"
+        "- Extract soft skills like communication, leadership, teamwork\n"
+        "- Extract domain-specific skills (e.g., finance, marketing, design)\n"
+        "- Include certifications and methodologies\n"
+        "- Return 10-20 most relevant skills\n"
+        "- Use English names for skills\n"
+        "- Return only valid JSON without any additional text"
+    )
+
 
 def get_cv_extraction_prompt() -> str:
     """Get the CV text extraction prompt."""
@@ -109,3 +125,7 @@ def get_contact_extraction_prompt() -> str:
 def get_skills_extraction_prompt() -> str:
     """Get the skills extraction prompt."""
     return GPTPrompts.SKILLS_EXTRACTION
+
+def get_job_extraction_prompt() -> str:
+    """Get the job extraction prompt."""
+    return GPTPrompts.JOB_EXTRACTION
