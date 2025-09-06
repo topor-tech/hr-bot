@@ -1,5 +1,6 @@
 import React from 'react'
-import JobDetails from './JobDetails'
+import { useNavigate } from 'react-router-dom'
+import JobDetails from './JobDetails.tsx'
 import type { Job } from '../types/job'
 import './VacanciesPage.css'
 
@@ -28,10 +29,20 @@ const JobPreviewPanel: React.FC<JobPreviewPanelProps> = ({
   onDownloadFile,
   onPreviewPdf
 }) => {
+  const navigate = useNavigate()
+
+  const handleBackToJobs = () => {
+    navigate('/jobs')
+  }
   return (
     <div className="job-preview-panel">
       <div className="panel-header">
         <h3>Preview & Details</h3>
+        {selectedJob && (
+          <button onClick={handleBackToJobs} className="back-btn">
+            ← Back to Jobs
+          </button>
+        )}
       </div>
       
       {selectedJob ? (

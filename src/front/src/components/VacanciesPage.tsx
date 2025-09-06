@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import JobListPanel from './JobListPanel'
 import JobPreviewPanel from './JobPreviewPanel'
 import PDFPreviewDialog from './PDFPreviewDialog'
@@ -6,6 +7,8 @@ import type { Job } from '../types/job'
 import './VacanciesPage.css'
 
 function VacanciesPage() {
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -113,6 +116,22 @@ function VacanciesPage() {
     fetchJobs()
   }, [])
 
+  // Handle URL parameter for job selection
+  useEffect(() => {
+    if (id && jobs.length > 0) {
+      const jobId = parseInt(id)
+      const job = jobs.find(j => j.id === jobId)
+      if (job && (!selectedJob || selectedJob.id !== jobId)) {
+        setSelectedJob(job)
+        fetchJobInfo(jobId)
+      }
+    } else if (!id && selectedJob) {
+      // If no ID in URL but job is selected, clear selection
+      setSelectedJob(null)
+      setSelectedJobInfo(null)
+    }
+  }, [id, jobs, selectedJob])
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -189,31 +208,34 @@ function VacanciesPage() {
       />
       
       <div className="jobs-layout">
-        <JobListPanel
-          jobs={jobs}
-          selectedJob={selectedJob}
-          loading={loading}
-          error={error}
-          onRefresh={fetchJobs}
-          onSelectJob={(job) => {
-            setSelectedJob(job)
-            fetchJobInfo(job.id)
-          }}
-          formatDate={formatDate}
-        />
+        {!selectedJob && (
+          <JobListPanel
+            jobs={jobs}
+            selectedJob={selectedJob}
+            loading={loading}
+            error={error}
+            onRefresh={fetchJobs}
+            onSelectJob={(job) => {
+              navigate(`/jobs/${job.id}`)
+            }}
+            formatDate={formatDate}
+          />
+        )}
         
-        <JobPreviewPanel
-          selectedJob={selectedJob}
-          selectedJobInfo={selectedJobInfo}
-          loadingJobInfo={loadingJobInfo}
-          generatingPdf={generatingPdf}
-          extractingText={extractingText}
-          formatDate={formatDate}
-          onGeneratePDF={generatePDF}
-          onExtractText={extractText}
-          onDownloadFile={downloadFile}
-          onPreviewPdf={previewPdf}
-        />
+        {selectedJob && (
+          <JobPreviewPanel
+            selectedJob={selectedJob}
+            selectedJobInfo={selectedJobInfo}
+            loadingJobInfo={loadingJobInfo}
+            generatingPdf={generatingPdf}
+            extractingText={extractingText}
+            formatDate={formatDate}
+            onGeneratePDF={generatePDF}
+            onExtractText={extractText}
+            onDownloadFile={downloadFile}
+            onPreviewPdf={previewPdf}
+          />
+        )}
       </div>
     </div>
   )

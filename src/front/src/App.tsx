@@ -133,6 +133,7 @@ function App() {
               } 
             />
             <Route path="/jobs" element={<VacanciesPage />} />
+            <Route path="/jobs/:id" element={<VacanciesPage />} />
             <Route path="/candidates" element={<CandidatesPage />} />
           </Routes>
         </main>
