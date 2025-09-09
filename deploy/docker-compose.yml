@@ -1,0 +1,17 @@
+services:
+  gotenberg:
+    image: gotenberg/gotenberg:8
+    ports:
+      - 3000:3000
+    environment:
+      - GOTENBERG_LOG_LEVEL=info
+    restart: unless-stopped
+
+  skaut:
+    build:
+      context: ./../src/back/skaut
+      dockerfile: Dockerfile
+    ports:
+      - 8001:8001
+    env_file:
+      - ./../src/back/skaut/.env
