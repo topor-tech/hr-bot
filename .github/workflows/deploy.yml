@@ -6,8 +6,9 @@ on:
 
 jobs:
   update-containers:
-    group: aws-llm-hr-beta
-    runs-on: self-hosted
+    runs-on: 
+      group: aws-llm-hr-beta
+      labels: [self-hosted]
     permissions:
       contents: read
       packages: write
