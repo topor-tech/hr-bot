@@ -3,6 +3,7 @@ import CVListPanel from './CVListPanel'
 import CVPreviewPanel from './CVPreviewPanel'
 import PDFPreviewDialog from './PDFPreviewDialog'
 import type { CV } from '../types/cv'
+import { getApiBaseUrl } from '../utils'
 import './CandidatesPage.css'
 
 function CandidatesPage() {
@@ -21,7 +22,7 @@ function CandidatesPage() {
     try {
       setLoading(true)
       setError(null)
-      const response = await fetch('http://localhost:8000/api/cv/list')
+      const response = await fetch(`${getApiBaseUrl()}/api/cv/list`)
       
       if (!response.ok) {
         throw new Error(`Failed to fetch CVs: ${response.statusText}`)
@@ -39,7 +40,7 @@ function CandidatesPage() {
   const fetchCVInfo = async (cvId: number) => {
     try {
       setLoadingCvInfo(true)
-      const response = await fetch(`http://localhost:8000/api/cv/info/${cvId}`)
+      const response = await fetch(`${getApiBaseUrl()}/api/cv/info/${cvId}`)
       
       if (!response.ok) {
         throw new Error(`Failed to fetch CV info: ${response.statusText}`)
@@ -58,7 +59,7 @@ function CandidatesPage() {
   const generatePDF = async (cvId: number) => {
     try {
       setGeneratingPdf(true)
-      const response = await fetch(`http://localhost:8000/api/cv/generate-pdf/${cvId}`, {
+      const response = await fetch(`${getApiBaseUrl()}/api/cv/generate-pdf/${cvId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +86,7 @@ function CandidatesPage() {
   const extractText = async (cvId: number) => {
     try {
       setExtractingText(true)
-      const response = await fetch(`http://localhost:8000/api/cv/extract/${cvId}`, {
+      const response = await fetch(`${getApiBaseUrl()}/api/cv/extract/${cvId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +126,7 @@ function CandidatesPage() {
 
   const downloadFile = async (s3Key: string, filename: string) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/files/download/${s3Key}`)
+      const response = await fetch(`${getApiBaseUrl()}/api/files/download/${s3Key}`)
       
       if (!response.ok) {
         throw new Error(`Failed to download file: ${response.statusText}`)
@@ -153,7 +154,7 @@ function CandidatesPage() {
 
   const previewPdf = async (s3Key: string) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/files/download/${s3Key}`)
+      const response = await fetch(`${getApiBaseUrl()}/api/files/download/${s3Key}`)
       
       if (!response.ok) {
         throw new Error(`Failed to load PDF: ${response.statusText}`)

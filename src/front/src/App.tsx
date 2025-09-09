@@ -5,6 +5,7 @@ import Header from './components/Header'
 import MainPage from './components/MainPage'
 import VacanciesPage from './components/VacanciesPage'
 import CandidatesPage from './components/CandidatesPage'
+import { getApiBaseUrl } from './utils'
 
 function App() {
   const [showModal, setShowModal] = useState(false)
@@ -30,7 +31,7 @@ function App() {
     formData.append('file', file)
     formData.append('name', name)
 
-    const response = await fetch('http://localhost:8000/api/cv/add', {
+    const response = await fetch(`${getApiBaseUrl()}/api/cv/add`, {
       method: 'POST',
       body: formData,
     })
@@ -47,7 +48,7 @@ function App() {
     formData.append('file', file)
     formData.append('name', name)
 
-    const response = await fetch('http://localhost:8000/api/jobs/add', {
+    const response = await fetch(`${getApiBaseUrl()}/api/jobs/add`, {
       method: 'POST',
       body: formData,
     })
