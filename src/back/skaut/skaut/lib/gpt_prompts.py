@@ -105,6 +105,87 @@ class GPTPrompts:
         "- Use English names for skills\n"
         "- Return only valid JSON without any additional text"
     )
+    
+    # Interview Script Generation
+    INTERVIEW_SCRIPT_GENERATION = (
+        "You are an expert HR interviewer creating a comprehensive interview script for an LLM voice interview agent. "
+        "Based on the job vacancy information provided, create a structured interview script that will guide the AI interviewer "
+        "through a professional and thorough interview process.\n\n"
+        "CRITICAL: You must return ONLY valid JSON. No additional text, explanations, or formatting outside the JSON structure.\n\n"
+        "Return a JSON object with the following structure:\n"
+        "{\n"
+        '  "interview_metadata": {\n'
+        '    "position_title": "string",\n'
+        '    "estimated_duration": "string",\n'
+        '    "interview_type": "string",\n'
+        '    "difficulty_level": "string"\n'
+        '  },\n'
+        '  "opening": {\n'
+        '    "greeting": "string",\n'
+        '    "introduction": "string",\n'
+        '    "agenda_overview": "string",\n'
+        '    "next_steps": "string"\n'
+        '  },\n'
+        '  "sections": [\n'
+        '    {\n'
+        '      "section_name": "string",\n'
+        '      "section_type": "string",\n'
+        '      "duration_minutes": 0,\n'
+        '      "instructions": "string",\n'
+        '      "questions": [\n'
+        '        {\n'
+        '          "question_id": "string",\n'
+        '          "question_text": "string",\n'
+        '          "question_type": "string",\n'
+        '          "expected_skills": ["string"],\n'
+        '          "follow_up_questions": ["string"],\n'
+        '          "evaluation_criteria": "string",\n'
+        '          "time_limit": 0\n'
+        '        }\n'
+        '      ]\n'
+        '    }\n'
+        '  ],\n'
+        '  "evaluation_rubric": {\n'
+        '    "technical_skills": {\n'
+        '      "weight": 0.0,\n'
+        '      "criteria": ["string"]\n'
+        '    },\n'
+        '    "soft_skills": {\n'
+        '      "weight": 0.0,\n'
+        '      "criteria": ["string"]\n'
+        '    },\n'
+        '    "cultural_fit": {\n'
+        '      "weight": 0.0,\n'
+        '      "criteria": ["string"]\n'
+        '    }\n'
+        '  },\n'
+        '  "closing": {\n'
+        '    "candidate_questions": "string",\n'
+        '    "next_steps": "string",\n'
+        '    "thank_you": "string"\n'
+        '  }\n'
+        "}\n\n"
+        "JSON FORMATTING RULES:\n"
+        "- Escape all quotes in strings using backslash: \\\"\n"
+        "- Use double quotes for all strings and keys\n"
+        "- Use numbers (not strings) for numeric values\n"
+        "- Ensure all strings are properly closed\n"
+        "- No trailing commas\n"
+        "- No comments or explanations outside the JSON\n"
+        "- Start with { and end with }\n\n"
+        "Content Guidelines:\n"
+        "- Create 4-6 sections covering different aspects of the role\n"
+        "- Include 3-5 questions per section\n"
+        "- Make questions specific to the job requirements and skills\n"
+        "- Include both technical and behavioral questions\n"
+        "- Provide clear evaluation criteria for each question\n"
+        "- Ensure the script flows naturally for a voice interview\n"
+        "- Consider the seniority level and adjust complexity accordingly\n"
+        "- Include follow-up questions to probe deeper when needed\n"
+        "- Keep all text concise and professional\n"
+        "- Avoid special characters that might break JSON parsing\n\n"
+        "IMPORTANT: Return ONLY the JSON object. Do not include any text before or after the JSON."
+    )
 
 
 def get_cv_extraction_prompt() -> str:
@@ -129,3 +210,8 @@ def get_skills_extraction_prompt() -> str:
 def get_job_extraction_prompt() -> str:
     """Get the job extraction prompt."""
     return GPTPrompts.JOB_EXTRACTION
+
+
+def get_interview_script_generation_prompt() -> str:
+    """Get the interview script generation prompt."""
+    return GPTPrompts.INTERVIEW_SCRIPT_GENERATION

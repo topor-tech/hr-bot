@@ -5,6 +5,7 @@ from .info import router as info_router
 from .genarate_pdf import router as generate_pdf_router
 from .extract import router as extract_router
 from .match_by_tags import router as match_by_tags_router
+from .generate_script import router as generate_script_router
 
 router = APIRouter(prefix="", tags=["jobs"])
 router.include_router(add_router)
@@ -13,5 +14,6 @@ router.include_router(info_router)
 router.include_router(generate_pdf_router)
 router.include_router(extract_router)
 router.include_router(match_by_tags_router)
+router.include_router(generate_script_router)
 
 __all__ = ["router"]
