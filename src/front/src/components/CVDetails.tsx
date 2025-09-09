@@ -7,7 +7,7 @@ import type { CV } from '../types/cv'
 import './CandidatesPage.css'
 
 interface CVDetailsProps {
-  cvInfo: CV
+  cvInfo: CV | null
   loading: boolean
   generatingPdf: boolean
   extractingText: boolean
