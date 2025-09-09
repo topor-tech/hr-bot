@@ -7,7 +7,6 @@ on:
 jobs:
   update-containers:
     runs-on: 
-      group: aws-llm-hr-beta
       labels: [self-hosted]
     permissions:
       contents: read
