@@ -21,4 +21,4 @@ services:
       context: ./../src/front
       dockerfile: Dockerfile
     ports:
-      - 3333:80
+      - 80:3333
