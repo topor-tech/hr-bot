@@ -1,5 +1,7 @@
 name: Build and Deploy HR Bot
 
+runs-on: self-hosted
+
 on:
   push:
     branches: [ trunk ]
